@@ -1,5 +1,10 @@
-import Dashboard from "./dashboard";
+import Link from "next/link";
+import { redirect } from "next/navigation";
+import { currentMember } from "../lib/session";
 
-export default function Page() {
-  return <Dashboard />;
+export const dynamic = "force-dynamic";
+
+export default async function Home() {
+  if (await currentMember()) redirect("/dashboard");
+  return <div className="landing"><header className="site-header"><Link className="brand" href="/"><span className="brand-mark">◒</span> Идеальный год</Link><Link className="button secondary" href="/login">Войти</Link></header><main className="landing-main"><section className="hero"><div><p className="eyebrow">Ваш год. Ваш темп.</p><h1>Большие перемены<br />начинаются<br /><em>с маленького шага.</em></h1><p className="hero-copy">Выберите то, что важно вам. Один посильный шаг в день, 12 сфер жизни и пространство, где можно заметить свои изменения.</p><Link className="button primary large" href="/register">Создать свой маршрут <span>↗</span></Link><p className="fine-print">Без карты и обязательств. Можно начать с малого.</p></div><div className="hero-art" aria-label="Двенадцать сфер личного роста"><div className="orbit orbit-one" /><div className="orbit orbit-two" /><div className="orbit orbit-three" /><div className="orbit-core">1 шаг<span>сегодня</span></div><span className="orbit-label label-one">Энергия</span><span className="orbit-label label-two">Отношения</span><span className="orbit-label label-three">Смысл</span><span className="orbit-label label-four">Развитие</span></div></section><section className="how-grid" aria-label="Как это работает"><article><span className="step-number">01</span><h2>Начните с себя</h2><p>Три вопроса и личная оценка сфер помогут выбрать первый фокус.</p></article><article><span className="step-number">02</span><h2>Сделайте свой шаг</h2><p>Выберите подходящую нагрузку. Сохраните результат или спокойно пропустите день.</p></article><article><span className="step-number">03</span><h2>Замечайте изменения</h2><p>История задач и снимки колеса сохраняются в вашем аккаунте.</p></article></section></main><footer><span>Идеальный год · Пространство маленьких шагов</span><Link href="/privacy">Как мы используем данные</Link></footer></div>;
 }

@@ -1,4 +1,4 @@
--- Initial schema for the 30-day pilot. All timestamps are stored in UTC.
+-- Original pilot schema, retained for existing installations.
 CREATE TYPE "TaskStatus" AS ENUM ('OFFERED', 'ACCEPTED', 'COMPLETED', 'PARTIAL', 'SKIPPED', 'REPLACED');
 CREATE TYPE "AssessmentKind" AS ENUM ('INITIAL', 'MONTHLY');
 

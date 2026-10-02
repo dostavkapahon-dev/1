@@ -19,6 +19,7 @@ services:
     build: .
     environment:
       DATABASE_URL: postgresql://ideal_year:ideal_year_local_only@postgres:5432/ideal_year
+      APP_ORIGIN: http://localhost:3000
     ports:
       - "3000:3000"
     depends_on:
@@ -29,7 +30,7 @@ services:
     build:
       context: .
       target: builder
-    command: npx prisma migrate deploy
+    command: npm run db:migrate
     environment:
       DATABASE_URL: postgresql://ideal_year:ideal_year_local_only@postgres:5432/ideal_year
     depends_on:
