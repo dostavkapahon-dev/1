@@ -22,6 +22,17 @@ services:
     ports:
       - "3000:3000"
     depends_on:
+      migrate:
+        condition: service_completed_successfully
+
+  migrate:
+    build:
+      context: .
+      target: builder
+    command: npx prisma migrate deploy
+    environment:
+      DATABASE_URL: postgresql://ideal_year:ideal_year_local_only@postgres:5432/ideal_year
+    depends_on:
       postgres:
         condition: service_healthy
 
