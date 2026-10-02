@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "vercel-build": "npm run db:migrate && next build",
     "start": "next start",
     "lint": "eslint .",
     "test": "vitest run",
@@ -12,6 +13,9 @@
     "admin:grant": "node --env-file-if-exists=.env scripts/grant-admin.mjs",
     "test:e2e": "playwright test",
     "typecheck": "tsc --noEmit"
+  },
+  "engines": {
+    "node": ">=22"
   },
   "dependencies": {
     "next": "^15.3.1",

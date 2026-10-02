@@ -4,7 +4,7 @@ const globalDb = globalThis as unknown as { idealYearPool?: Pool };
 export function db() {
   if (!process.env.DATABASE_URL) throw new Error("Database is not configured");
   return globalDb.idealYearPool ??= new Pool({
-    connectionString: process.env.DATABASE_URL, max: 10,
+    connectionString: process.env.DATABASE_URL, max: process.env.VERCEL ? 3 : 10,
     connectionTimeoutMillis: 5000, idleTimeoutMillis: 30000,
     options: "-c timezone=UTC -c statement_timeout=10000",
   });
